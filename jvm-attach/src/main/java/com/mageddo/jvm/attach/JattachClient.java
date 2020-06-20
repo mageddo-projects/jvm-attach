@@ -1,4 +1,4 @@
-package com.mageddo.jattach;
+package com.mageddo.jvm.attach;
 
 import java.lang.management.ManagementFactory;
 /**

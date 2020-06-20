@@ -11,7 +11,7 @@ zero C/C++ needed.
 # Usage
 
 ```gradle
-compile("com.mageddo.jattach:jvm-attach:1.0.0");
+compile("com.mageddo.jvmattach:jvm-attach:1.0.0");
 ```
 
 # Requirements

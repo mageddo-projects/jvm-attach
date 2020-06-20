@@ -1,4 +1,4 @@
-package com.mageddo.jattach;
+package com.mageddo.jvm.attach;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {

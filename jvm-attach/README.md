@@ -9,7 +9,7 @@ Execute operations in remote running Java Virtual Machines
 # Usage
 
 ```gradle
-compile("com.mageddo.jattach:jattach-client:1.0.0");
+compile("com.mageddo.jvmattach:jattach-client:1.0.0");
 ```
 
 # Requirements
