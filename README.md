@@ -15,7 +15,7 @@ compile("com.mageddo.jvmattach:jattach-client:1.0.0");
 ```java
 public class Main {
   public static void main(String[] args) {
-    JvmAttach.loadJar(Main.class.getResourceAsStream("/simple-agent.jar"));
+    JvmAttach.loadJar(JvmAttach.getCurrentPid(), Main.class.getResourceAsStream("/simple-agent.jar"));
     // simple agent loaded: null
   }
 }
