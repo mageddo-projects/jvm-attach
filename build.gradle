@@ -1,7 +1,6 @@
-//configure([project(":jvm-attach"), project(":simple-agent")]){
 subprojects {
 
-  apply plugin: "java"
+  apply plugin: "java-library"
 
   repositories {
     jcenter()

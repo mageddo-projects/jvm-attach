@@ -35,7 +35,7 @@ public class JvmAttach {
 
   /**
    * Injects JavaAgent jar into the target JVM process,
-   * remember to configure your META-INF/MANIFEST.MF with the agent class, e.g<br/><br/>
+   * remember to configure your META-INF/MANIFEST.MF with the agent class, e.g<br><br>
    * <code>Agent-Class: com.mageddo.Agent</code>
    *
    * @param pid  the target JVM processId

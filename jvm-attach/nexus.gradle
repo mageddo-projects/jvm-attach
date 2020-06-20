@@ -1,0 +1,70 @@
+import java.nio.charset.StandardCharsets
+
+tasks.withType(JavaCompile) {
+  options.encoding = StandardCharsets.UTF_8.displayName()
+}
+
+task javadocJar(type: Jar) {
+  archiveClassifier = 'javadoc'
+  from javadoc
+}
+
+task sourcesJar(type: Jar) {
+  archiveClassifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives javadocJar, sourcesJar
+}
+
+if (project.hasProperty("signing.keyId")) {
+  apply plugin: 'signing'
+  signing {
+    sign configurations.archives
+  }
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: project.findProperty("ossrhUsername"), password: project.findProperty("ossrhPassword"))
+      }
+
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: project.findProperty("ossrhUsername"), password: project.findProperty("ossrhPassword"))
+      }
+
+      pom.project {
+        name project.name
+        packaging 'jar'
+        description project.description
+        url projectUrl
+
+        scm {
+          connection projectUrl
+          developerConnection projectUrl
+          url projectUrl
+        }
+
+        licenses {
+          license {
+            name 'The Apache License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+
+        developers {
+          developer {
+            id 'mageddo'
+            name 'Elvis Souza'
+            email 'edigitalb@gmail.com'
+          }
+        }
+      }
+    }
+  }
+}
