@@ -24,8 +24,7 @@ See [unit tests][2] for more examples
 
 
 # Requirements
-* HotSpot JVM, OpenJ9 JVMs are not supported
-* A JRE, no JDK needed
+* HotSpot JRE, OpenJ9 JVMs are not supported, no JDK needed
 
 [1]: https://github.com/apangin/jattach
 [2]: jvm-attach/src/test/java/com/mageddo/jvm/attach/JvmAttachTest.java
