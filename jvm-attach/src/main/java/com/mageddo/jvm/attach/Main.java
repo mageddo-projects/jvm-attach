@@ -17,7 +17,7 @@ public class Main {
 //    );
 //
 //    Jattach.attach(
-//        JattachClient.getCurrentPid(),
+//        JvmAttach.getCurrentPid(),
 //        3,
 //        "load",
 //        "/home/typer/dev/projects/ram-spider/jattach/build/libsimple_agent.so",

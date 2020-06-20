@@ -1,6 +1,13 @@
 package com.mageddo.jvm.attach;
 
+import java.nio.file.Path;
+
 class Jattach {
+
+  static {
+    final Path libraryPath = IoUtils.copyFromResourcesToTempPath("/libraries/linux-x64/libjattach.so");
+    System.load(String.valueOf(libraryPath));
+  }
 
   public static native int loadJar(int pid, String path);
 
