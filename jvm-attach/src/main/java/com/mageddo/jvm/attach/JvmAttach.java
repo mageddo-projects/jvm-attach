@@ -22,14 +22,14 @@ public class JvmAttach {
   /**
    * Loads jar agent into current process
    */
-  public static int loadJar(String path){
+  public static int loadJar(String path) {
     return loadJar(getCurrentPid(), path);
   }
 
   /**
    * Loads jar agent into current process
    */
-  public static int loadJar(String path, String options){
+  public static int loadJar(String path, String options) {
     return loadJar(getCurrentPid(), path, options);
   }
 
@@ -38,53 +38,61 @@ public class JvmAttach {
    * remember to configure your META-INF/MANIFEST.MF with the agent class, e.g<br/><br/>
    * <code>Agent-Class: com.mageddo.Agent</code>
    *
-   * @param pid the target JVM processId
+   * @param pid  the target JVM processId
    * @param path the jar path e.g /tmp/my-jar.jar, you can optionally pass options e.g
    *             /tmp/my-jar.jar=some important information to send to the agent
    */
-  public static int loadJar(int pid, String path){
+  public static int loadJar(int pid, String path) {
     return Jattach.loadJar(pid, path);
   }
 
   /**
    * @see #loadJar(int, String)
    */
-  public static int loadJar(int pid, String path, String options){
+  public static int loadJar(int pid, String path, String options) {
     return Jattach.loadJar(pid, String.format("%s%s", path, options == null ? "" : String.format("=%s", options)));
+  }
+
+  public static int load(InputStream source) {
+    return load(source, "");
+  }
+
+  public static int load(InputStream source, String options) {
+    return load(String.valueOf(IoUtils.copyToTempPath(source)), options);
   }
 
   /**
    * @see #load(String, String)
    */
-  public static int load(String path){
+  public static int load(String path) {
     return loadJar(getCurrentPid(), path);
   }
 
   /**
    * Loads shared library into current process
    */
-  public static int load(String path, String options){
+  public static int load(String path, String options) {
     return load(getCurrentPid(), path, options);
   }
 
   /**
    * @see #load(int, String, String)
    */
-  public static int load(int pid, String path){
-    return Jattach.load(pid, path, null);
+  public static int load(int pid, String path) {
+    return Jattach.load(pid, path, "");
   }
 
   /**
    * @see Jattach#load(int, String, String)
    */
-  public static int load(int pid, String path, String options){
+  public static int load(int pid, String path, String options) {
     return Jattach.load(pid, path, options);
   }
 
   /**
    * @see Jattach#loadLibrary(int, String)
    */
-  public static int loadLibrary(int pid, String name){
+  public static int loadLibrary(int pid, String name) {
     return Jattach.loadLibrary(pid, name);
   }
 
@@ -92,7 +100,7 @@ public class JvmAttach {
    * Perform some operations at the specificed JVM processId,
    * see https://github.com/mageddo/jattach/blob/55745c5/README.md
    */
-  public static int attach(int pid, String... args){
+  public static int attach(int pid, String... args) {
     return Jattach.attach(pid, args.length, args);
   }
 

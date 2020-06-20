@@ -7,6 +7,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JvmAttachTest {
 
   @Test
+  void mustLoadNativeAgentWithArguments(){
+    // arrange
+    final var nativeSimpleAgentStream = JvmAttachTest.class.getResourceAsStream("/libsimple_agent.so");
+
+    // act
+    final var code = JvmAttach.load(nativeSimpleAgentStream, "native agent options");
+
+    // assert
+    assertEquals(0, code);
+  }
+
+  @Test
+  void mustLoadNativeAgent(){
+    // arrange
+    final var nativeSimpleAgentStream = JvmAttachTest.class.getResourceAsStream("/libsimple_agent.so");
+
+    // act
+    final var code = JvmAttach.load(nativeSimpleAgentStream);
+
+    // assert
+    assertEquals(0, code);
+  }
+
+  @Test
   void mustLoadJarAgent(){
     // arrange
     final var success = 0;

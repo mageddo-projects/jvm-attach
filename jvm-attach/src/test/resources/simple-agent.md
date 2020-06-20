@@ -1,1 +1,1 @@
-simple-agent.jar was copied from smimple-agent module
+`simple-agent.jar` was compiled from `simple-agent` module
