@@ -1,0 +1,11 @@
+# https://help.github.com/articles/dealing-with-line-endings/
+
+* text eol=lf
+*.bat text eol=crlf
+
+*.so binary
+*.dll binary
+*.exe binary
+*.jar binary
+*.png binary
+*.jpg binary
