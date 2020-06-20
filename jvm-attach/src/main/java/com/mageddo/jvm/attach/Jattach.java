@@ -2,11 +2,12 @@ package com.mageddo.jvm.attach;
 
 import java.nio.file.Path;
 
+import static com.mageddo.jvm.attach.IoUtils.copyFromResourcesToTempPath;
+
 class Jattach {
 
   static {
-    final Path libraryPath = IoUtils.copyFromResourcesToTempPath("/libraries/linux-x64/libjattach.so");
-    System.load(String.valueOf(libraryPath));
+    loadJattach();
   }
 
   public static native int loadJar(int pid, String path);
@@ -28,4 +29,23 @@ class Jattach {
    * see https://github.com/mageddo/jattach/blob/55745c5/README.md
    */
   public static native int attach(int pid, int argc, String... args);
+
+
+  private static void loadJattach() {
+    final Path libraryPath = copyFromResourcesToTempPath(getJattachSharedLibraryPath());
+    System.load(String.valueOf(libraryPath));
+  }
+
+  private static String getJattachSharedLibraryPath() {
+    final Os os = Platform.findOs();
+    final JvmArch arch = Platform.findJvmArch();
+    if(os.isPosix() && arch == JvmArch.x64){
+      return "/libraries/linux-x64/libjattach.so";
+    }
+    throw new UnsupportedOperationException(String.format(
+      "Jattach shared library not found to os=%s, jvm arch=%s",
+      os,
+      arch
+    ));
+  }
 }
