@@ -12,8 +12,20 @@ Execute operations in remote running Java Virtual Machines
 compile("com.mageddo.jvmattach:jattach-client:1.0.0");
 ```
 
+```java
+public class Main {
+  public static void main(String[] args) {
+    JvmAttach.loadJar(Main.class.getResourceAsStream("/simple-agent.jar"));
+    // simple agent loaded: null
+  }
+}
+```
+See [unit tests][2] for more examples 
+
+
 # Requirements
 * HotSpot JVM, OpenJ9 JVMs are not supported
 * A JRE, no JDK needed
 
 [1]: https://github.com/apangin/jattach
+[2]: jvm-attach/src/test/java/com/mageddo/jvm/attach/JvmAttachTest.java
