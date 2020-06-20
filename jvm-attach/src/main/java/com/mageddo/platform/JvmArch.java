@@ -15,7 +15,7 @@ public enum JvmArch {
 
   public static JvmArch fromArchModel() {
     final String arch = getSunArch();
-    switch (arch){
+    switch (arch) {
       case "32":
         return x86;
       case "64":
@@ -27,9 +27,8 @@ public enum JvmArch {
   public static JvmArch lookup() {
     final JvmArch arch = Optional
       .ofNullable(fromArchModel())
-      .orElseGet(JvmArch::fromOsArch)
-      ;
-    if(arch == null){
+      .orElseGet(JvmArch::fromOsArch);
+    if (arch == null) {
       throw new IllegalStateException(String.format(
         "Unable to find JVM arch: jvmArch=%s, osArch=%s", getOsArch(), getSunArch()
       ));
@@ -38,9 +37,14 @@ public enum JvmArch {
   }
 
   public static JvmArch fromOsArch() {
-    switch (getOsArch()){
+    switch (getOsArch()) {
       case "amd64":
+      case "x86_64":
         return x64;
+
+      case "i386":
+      case "x86_32":
+        return x86;
       default:
         return null;
     }

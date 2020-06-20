@@ -3,8 +3,8 @@ package com.mageddo.platform;
 public enum Os {
 
   LINUX(true, "Linux"),
-  MAC(true),
-  WINDOWS,
+  OSX(true, "osx"),
+  WINDOWS("windows"),
   ;
 
   private final String[] codes;
