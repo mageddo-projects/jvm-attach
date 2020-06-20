@@ -323,7 +323,6 @@ static int connect_socket(int pid) {
 
 // Send command with arguments to socket
 static int write_command(int fd, int argc, char** argv) {
-    printf("writting command");
     // Protocol version
     if (write(fd, "1", 2) <= 0) {
         return 0;
@@ -402,18 +401,13 @@ int jattach(int pid, int argc, char** args){
         return 1;
     }
 
-    printf("Connected to remote JVM\n");
     if (!write_command(fd, argc, args)) {
         perror("Error writing to socket");
         close(fd);
         return 1;
     }
 
-    printf("Response code = ");
-    fflush(stdout);
-
     int result = read_response(fd);
-    printf("\n");
     close(fd);
     return result;
 }

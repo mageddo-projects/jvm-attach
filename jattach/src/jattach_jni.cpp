@@ -10,7 +10,7 @@
 #include "jattach.h"
 
 JNIEXPORT jint JNICALL
-Java_com_mageddo_jattach_Jattach_load(JNIEnv *env, jclass thisClass, jint pid, jstring path, jstring options) {
+Java_com_mageddo_jvm_attach_Jattach_load(JNIEnv *env, jclass thisClass, jint pid, jstring path, jstring options) {
     char *cPath = (char *) env->GetStringUTFChars(path, 0);
     char *cOptions = (char *) env->GetStringUTFChars(options, 0);
     char *args[] = {
@@ -26,7 +26,7 @@ Java_com_mageddo_jattach_Jattach_load(JNIEnv *env, jclass thisClass, jint pid, j
 }
 
 JNIEXPORT jint JNICALL
-Java_com_mageddo_jattach_Jattach_loadLibrary(JNIEnv *env, jclass, jint pid, jstring path, jstring options){
+Java_com_mageddo_jvm_attach_Jattach_loadLibrary(JNIEnv *env, jclass, jint pid, jstring path, jstring options){
     char *cPath = (char *) env->GetStringUTFChars(path, 0);
     char *cOptions = (char *) env->GetStringUTFChars(options, 0);
     char *args[] = {
@@ -41,7 +41,7 @@ Java_com_mageddo_jattach_Jattach_loadLibrary(JNIEnv *env, jclass, jint pid, jstr
 }
 
 JNIEXPORT jint JNICALL
-Java_com_mageddo_jattach_Jattach_attach(JNIEnv *env, jclass, jint pid, jint argc, jobjectArray javaArgs) {
+Java_com_mageddo_jvm_attach_Jattach_attach(JNIEnv *env, jclass, jint pid, jint argc, jobjectArray javaArgs) {
     int stringCount = env->GetArrayLength(javaArgs);
     char *args[stringCount];
     for (int i = 0; i < stringCount; i++) {
@@ -56,7 +56,7 @@ Java_com_mageddo_jattach_Jattach_attach(JNIEnv *env, jclass, jint pid, jint argc
 }
 
 JNIEXPORT jint JNICALL
-Java_com_mageddo_jattach_Jattach_loadJar(JNIEnv *env, jclass, jint pid, jstring path) {
+Java_com_mageddo_jvm_attach_Jattach_loadJar(JNIEnv *env, jclass, jint pid, jstring path) {
     char *cPath = (char *) env->GetStringUTFChars(path, 0);
     char *args[] = {
             (char *) "load",

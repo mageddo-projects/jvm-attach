@@ -11,28 +11,28 @@ extern "C" {
  * Class:     com_mageddo_jattach_Jattach
  * Method:    load
  */
-JNIEXPORT jint JNICALL Java_com_mageddo_jattach_Jattach_load
+JNIEXPORT jint JNICALL Java_com_mageddo_jvm_attach_Jattach_load
         (JNIEnv *, jclass, jint, jstring, jstring);
 
 /*
  * Class:     com_mageddo_jattach_Jattach
  * Method:    loadLibrary
  */
-JNIEXPORT jint JNICALL Java_com_mageddo_jattach_Jattach_loadLibrary
+JNIEXPORT jint JNICALL Java_com_mageddo_jvm_attach_Jattach_loadLibrary
         (JNIEnv *, jclass, jint, jstring, jstring);
 
 /*
  * Class:     com_mageddo_jattach_Jattach
  * Method:    attach
  */
-JNIEXPORT jint JNICALL Java_com_mageddo_jattach_Jattach_attach
+JNIEXPORT jint JNICALL Java_com_mageddo_jvm_attach_Jattach_attach
         (JNIEnv *, jclass, jint, jint, jobjectArray);
 
 /*
  * Class:     com_mageddo_jattach_Jattach
  * Method:    loadJar
  */
-JNIEXPORT jint JNICALL Java_com_mageddo_jattach_Jattach_loadJar
+JNIEXPORT jint JNICALL Java_com_mageddo_jvm_attach_Jattach_loadJar
         (JNIEnv *, jclass, jint, jstring);
 
 #ifdef __cplusplus
