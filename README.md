@@ -1,6 +1,6 @@
 # Jvm Attach
 Jvm Attach make it easy to execute operations into 
-remote running Java Virtual Machines from Java,
+remote running Java Virtual Machines from Java code,
 zero C/C++ needed.
 
 # Features
