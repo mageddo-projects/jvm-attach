@@ -7,7 +7,7 @@
 #endif
 
 #include <jvmti.h>
-#include "jattach.h"
+#include "jattach_jni.h"
 
 JNIEXPORT jint JNICALL
 Java_com_mageddo_jvm_attach_Jattach_load(JNIEnv *env, jclass thisClass, jint pid, jstring path, jstring options) {
