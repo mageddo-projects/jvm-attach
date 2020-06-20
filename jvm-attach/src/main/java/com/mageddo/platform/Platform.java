@@ -1,4 +1,4 @@
-package com.mageddo.jvm.attach;
+package com.mageddo.platform;
 
 public class Platform {
 

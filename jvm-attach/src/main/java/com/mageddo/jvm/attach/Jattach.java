@@ -1,5 +1,9 @@
 package com.mageddo.jvm.attach;
 
+import com.mageddo.platform.JvmArch;
+import com.mageddo.platform.Os;
+import com.mageddo.platform.Platform;
+
 import java.nio.file.Path;
 
 import static com.mageddo.jvm.attach.IoUtils.copyFromResourcesToTempPath;
