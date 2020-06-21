@@ -43,9 +43,9 @@ class Jattach {
   private static String getJattachSharedLibraryPath() {
     final Os os = Platform.findOs();
     final JvmArch arch = Platform.findJvmArch();
-    if(os.isPosix() && arch == JvmArch.x64){
+    if (os.isPosix() && arch == JvmArch.x64) {
       return "/libraries/linux-x64/libjattach.so";
-    } else if(os.isWindows() && arch == JvmArch.x64){
+    } else if (os.isWindows() && arch == JvmArch.x64) {
       return "/libraries/windows-x64/libjattach.dll";
     }
     throw new UnsupportedOperationException(String.format(

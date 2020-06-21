@@ -1,5 +1,7 @@
 package com.mageddo.jvm.attach;
 
+import com.mageddo.platform.JvmArch;
+import com.mageddo.platform.Platform;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +11,7 @@ class JvmAttachTest {
   @Test
   void mustLoadNativeAgentWithArguments(){
     // arrange
-    final var nativeSimpleAgentStream = JvmAttachTest.class.getResourceAsStream("/libsimple_agent.so");
+    final var nativeSimpleAgentStream = JvmAttachTest.class.getResourceAsStream(getNativeLibrary());
 
     // act
     final var code = JvmAttach.load(nativeSimpleAgentStream, "native agent options");
@@ -21,7 +23,7 @@ class JvmAttachTest {
   @Test
   void mustLoadNativeAgent(){
     // arrange
-    final var nativeSimpleAgentStream = JvmAttachTest.class.getResourceAsStream("/libsimple_agent.so");
+    final var nativeSimpleAgentStream = JvmAttachTest.class.getResourceAsStream(getNativeLibrary());
 
     // act
     final var code = JvmAttach.load(nativeSimpleAgentStream);
@@ -60,4 +62,16 @@ class JvmAttachTest {
     assertEquals("my options", System.getProperty("simple.agent.options"));
   }
 
+  String getNativeLibrary() {
+    final var os = Platform.findOs();
+    final var arch = Platform.findJvmArch();
+    if(os.isPosix() && arch == JvmArch.x64){
+      return "/linux-x64/libsimple_agent.so";
+    } else if(os.isWindows() && arch == JvmArch.x64){
+      return "/windows-x64/libsimple_agent.so";
+    }
+    throw new UnsupportedOperationException(String.format(
+      "No simple agent for testing for the platform: %s %s", os, arch
+    ));
+  }
 }
