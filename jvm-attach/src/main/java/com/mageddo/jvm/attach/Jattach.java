@@ -47,6 +47,8 @@ class Jattach {
       return "/libraries/linux-x64/libjattach.so";
     } else if (os.isWindows() && arch == JvmArch.x64) {
       return "/libraries/windows-x64/libjattach.dll";
+    } else if (os.isWindows() && arch == JvmArch.x86) {
+      return "/libraries/windows-x86/libjattach.dll";
     }
     throw new UnsupportedOperationException(String.format(
       "Jattach shared library not found to os=%s, jvm arch=%s",

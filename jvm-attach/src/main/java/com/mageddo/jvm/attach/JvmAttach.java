@@ -15,8 +15,16 @@ public class JvmAttach {
   }
 
   public static int loadJar(InputStream sourceJar, String options) {
+    return loadJar(getCurrentPid(), sourceJar, options);
+  }
+
+  public static int loadJar(int pid, InputStream sourceJar) {
+    return loadJar(pid, sourceJar, null);
+  }
+
+  public static int loadJar(int pid, InputStream sourceJar, String options) {
     final Path jarPath = IoUtils.copyToTempPath(sourceJar);
-    return loadJar(String.valueOf(jarPath), options);
+    return loadJar(pid, String.valueOf(jarPath), options);
   }
 
   /**
@@ -58,7 +66,15 @@ public class JvmAttach {
   }
 
   public static int load(InputStream source, String options) {
-    return load(String.valueOf(IoUtils.copyToTempPath(source)), options);
+    return load(getCurrentPid(), source, options);
+  }
+
+  public static int load(int pid, InputStream source) {
+    return load(pid, source, "");
+  }
+
+  public static int load(int pid, InputStream source, String options) {
+    return load(pid, String.valueOf(IoUtils.copyToTempPath(source)), options);
   }
 
   /**

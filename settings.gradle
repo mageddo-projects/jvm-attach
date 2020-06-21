@@ -1,2 +1,3 @@
 include ":jvm-attach"
 include ":simple-agent"
+include ":examples"

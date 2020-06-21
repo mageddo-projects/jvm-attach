@@ -1,0 +1,17 @@
+plugins {
+  id "com.github.johnrengelman.shadow" version "6.0.0"
+}
+
+def mainClassName = "com.mageddo.jvm.attach.Main"
+
+jar {
+  manifest {
+    attributes(
+      "Main-Class": mainClassName
+    )
+  }
+}
+
+dependencies {
+  implementation(project(":jvm-attach"))
+}

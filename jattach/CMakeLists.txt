@@ -21,3 +21,7 @@ add_compile_definitions(WINDOWS)
 add_library(jattach SHARED src/jattach_jni.cpp)
 add_library(simple_agent SHARED src/simple_agent.cpp)
 add_executable(jattach_main src/jattach_main.cpp)
+
+set_target_properties(jattach_main PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
+set_target_properties(jattach PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-Wl,--add-stdcall-alias -m32 -shared")
+set_target_properties(simple_agent PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-Wl,--add-stdcall-alias -m32 -shared")

@@ -8,6 +8,6 @@ int main() {
             "true"
     };
     printf("array created!\n");
-    jattach(4872, 3, args);
+    jattach(1696, 3, args);
     return 0;
 }
