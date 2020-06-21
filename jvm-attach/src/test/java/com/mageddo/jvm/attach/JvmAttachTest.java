@@ -68,7 +68,7 @@ class JvmAttachTest {
     if(os.isPosix() && arch == JvmArch.x64){
       return "/linux-x64/libsimple_agent.so";
     } else if(os.isWindows() && arch == JvmArch.x64){
-      return "/windows-x64/libsimple_agent.so";
+      return "/windows-x64/libsimple_agent.dll";
     }
     throw new UnsupportedOperationException(String.format(
       "No simple agent for testing for the platform: %s %s", os, arch
