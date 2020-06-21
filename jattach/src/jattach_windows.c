@@ -68,7 +68,8 @@ static LPTHREAD_START_ROUTINE allocate_code(HANDLE hProcess) {
     SIZE_T codeSize = 1024;
     LPVOID code = VirtualAllocEx(hProcess, NULL, codeSize, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
     if (code != NULL) {
-        WriteProcessMemory(hProcess, code, remote_thread_entry, codeSize, NULL);
+        LPCVOID p = reinterpret_cast<LPCVOID>(remote_thread_entry);
+        WriteProcessMemory(hProcess, code,p, codeSize, NULL);
     }
     return (LPTHREAD_START_ROUTINE)code;
 }
@@ -191,7 +192,8 @@ static int inject_thread(int pid, char* pipeName, int argc, char** argv) {
         CloseHandle(hThread);
     }
 
-    VirtualFreeEx(hProcess, code, 0, MEM_RELEASE);
+    LPVOID codep = reinterpret_cast<LPVOID>(code);
+    VirtualFreeEx(hProcess, codep, 0, MEM_RELEASE);
     VirtualFreeEx(hProcess, data, 0, MEM_RELEASE);
     CloseHandle(hProcess);
 
