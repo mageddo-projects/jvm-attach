@@ -220,16 +220,7 @@ static int read_response(HANDLE hPipe) {
     return result;
 }
 
-int main(int argc, char** argv) {
-    if (argc < 3) {
-        printf("jattach " JATTACH_VERSION " built on " __DATE__ "\n"
-               "Copyright 2018 Andrei Pangin\n"
-               "\n"
-               "Usage: jattach <pid> <cmd> [args ...]\n");
-        return 1;
-    }
-
-    int pid = atoi(argv[1]);
+int jattach(int pid, int argc, char** args){
 
     char pipeName[MAX_PATH];
     sprintf(pipeName, "\\\\.\\pipe\\javatool%d", GetTickCount());
@@ -240,7 +231,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    if (!inject_thread(pid, pipeName, argc - 2, argv + 2)) {
+    if (!inject_thread(pid, pipeName, argc, args)) {
         CloseHandle(hPipe);
         return 1;
     }
