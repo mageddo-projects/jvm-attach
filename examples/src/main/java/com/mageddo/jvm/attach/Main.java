@@ -19,7 +19,9 @@ public class Main {
       return "/windows-x64/libsimple_agent.dll";
     } else if(os.isWindows() && arch == JvmArch.x86){
       return "/windows-x86/libsimple_agent.dll";
+    } else if(os.isPosix() && arch == JvmArch.x64){
+      return "/linux-x64/libsimple_agent.so";
     }
-    throw new UnsupportedOperationException(String.format("not agent for os: %s, arch:%s", os, arch));
+    throw new UnsupportedOperationException(String.format("no agent for os: %s, arch:%s", os, arch));
   }
 }
